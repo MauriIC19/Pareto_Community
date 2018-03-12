@@ -10,95 +10,97 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-
 	<div class="container">
-		<div class="row">
-			<div class="col">
-				<h1>Pareto Community</h1>
+		<div id="pagina-principal">
+			<div class="row">
+				<div class="col">
+					<h1>Pareto Community</h1>
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-10">
-				<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Buscar">
-			</div>
-			<div class="col-2">
-				<button class="btn btn-primary" type="submit">Crear Nuevo</button>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-4">
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						<a href="#" class="card-link">Card link</a>
-						<a href="#" class="card-link">Another link</a>
-					</div>
+			<div class="row">
+				<div class="col-10">
+					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Buscar">
+				</div>
+				<div class="col-2">
+					<button id="btn-nuevo-problema"class="btn btn-primary" type="submit">Crear Nuevo</button>
 				</div>
 			</div>
 
-			<div class="col-4">
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						<a href="#" class="card-link">Card link</a>
-						<a href="#" class="card-link">Another link</a>
-					</div>
-				</div>
+			<div id="cards-container" class="row">
+
 			</div>
-			<div class="col-4">
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						<a href="#" class="card-link">Card link</a>
-						<a href="#" class="card-link">Another link</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-4">
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						<a href="#" class="card-link">Card link</a>
-						<a href="#" class="card-link">Another link</a>
-					</div>
-				</div>
-			</div>
+
 			<div class="col-12">
-				<p>Mauricio Arturo Ibarra Corona & Luis Jorge Lozano Domínguez</p>
+				<p id="creditos">Mauricio Arturo Ibarra Corona & Luis Jorge Lozano Domínguez</p>
 			</div>
-		</div>
 
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						...
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save changes</button>
+			<!-- Modal Créditos -->
+			<div class="modal fade" id="modal_creditos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Créditos</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-6">
+									<img data-src="holder.js/200x200" class="rounded float-left" alt="200x200" style="width: 100px; height: 100px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1621ae41f9b%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1621ae41f9b%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2275.5%22%20y%3D%22105.1%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
+									<img data-src="holder.js/200x200" class="rounded float-left" alt="200x200" style="width: 100px; height: 100px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1621ae41f9b%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1621ae41f9b%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2275.5%22%20y%3D%22105.1%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
+								</div>
+
+								<div class="col-6">
+									<p>Universidad Autónoma de Querétaro</p>
+									<p>Tópico III</p>
+									<p>Dr. Ubaldo Chávez Morales</p>
+								</div>
+
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
 					</div>
 				</div>
 			</div>
+			
+
+			<!-- Modal Creación Problema -->
+			<div class="modal fade" id="modal_problemas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 id="modal-title" class="modal-title" id="exampleModalLongTitle">Prueba</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div id="modal-body" class="modal-body">
+							<div class="row">
+								<div class="col-12">
+									<p>Para empezar, cuéntanos sobre que temática te interesa llevar a cabo el análisis.</p>
+								</div>
+								<div class="col-12">
+									<input type="text" class="form-control" id="nombreProblema" placeholder="Ej. La consolidación de mi empresa en...">
+								</div>
+
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+							<button type="button" class="btn btn-primary">Siguiente</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</div>
-	</div>
 
 
+		
+	<!--
 
 	<input type="text" class="factor" value="1">
 	<input type="text" class="factor" value="2">
@@ -125,5 +127,7 @@
 	<button class="voted" value="10">Factor 10</button>
 	<button class="voted" value="11">Factor 11</button>
 	<button value="12">Factor 12</button>
+
+-->
 </body>
 </html>
