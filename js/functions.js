@@ -109,6 +109,8 @@ function modalCrearProblema(modal){
 
 	modalBody = document.getElementById("modal-body");
 
+	botonSiguiente = document.getElementById("btn-siguiente");
+
 	//Limpiamos body
 	
 	while (modalBody.firstChild) {
@@ -119,22 +121,6 @@ function modalCrearProblema(modal){
 		case 1:
 			
 			modalTitle.textContent = "Nuevo Diagrama";
-
-			/*
-			
-			<div class="row">
-								<div class="col-12">
-									<p>Para empezar, cuéntanos sobre que temática te interesa llevar a cabo el análisis.</p>
-								</div>
-								<div class="col-12">
-									<input type="text" class="form-control" id="nombreProblema" aria-describedby="emailHelp" placeholder="Ej. La consolidación de mi empresa en...">
-								</div>
-
-							</div>
-
-			 */
-			
-
 
 			rowPrincipal = document.createElement("div");
 			rowPrincipal.classList.add("row");
@@ -169,11 +155,65 @@ function modalCrearProblema(modal){
 			rowPrincipal.appendChild(colContenedorInput);
 
 			modalBody.appendChild(rowPrincipal);
-			
 
+
+			botonSiguienteNE = botonSiguiente.cloneNode(true);
+
+			botonSiguiente.parentNode.replaceChild(botonSiguienteNE, botonSiguiente);
+
+			botonSiguienteNE.addEventListener("click",function(){
+				modalCrearProblema(2);
+			});
+			
 
 			break;
 		case 2:
+
+			modalTitle.textContent = "Descripción";
+
+			rowPrincipal = document.createElement("div");
+			rowPrincipal.classList.add("row");
+
+			colContenedorInstruccion = document.createElement("div");
+			colContenedorInstruccion.classList.add("col-12");
+
+			pInstruccion = document.createElement("p");
+
+			pInstruccionTxt = document.createTextNode("¡Excelente Tema!, ahora danos una breve descripción del propósito del análisis del mismo.");
+
+			colContenedorInput = document.createElement("div");
+			colContenedorInput.classList.add("col-12");
+
+			inputDescripcionProblema = document.createElement("textarea");
+			inputDescripcionProblema.setAttribute("type", "text");
+			inputDescripcionProblema.setAttribute("id", "descripcion");
+			inputDescripcionProblema.setAttribute("placeholder", "Ej. Me interesa identificar cuales son las principales problemáticas de mi negocio...")
+			inputDescripcionProblema.classList.add("form-control");
+
+			//Texto
+			
+			pInstruccion.appendChild(pInstruccionTxt);
+
+			//Contenedor
+			
+			colContenedorInstruccion.appendChild(pInstruccion);
+
+			colContenedorInput.appendChild(inputDescripcionProblema);
+
+			rowPrincipal.appendChild(colContenedorInstruccion);
+			rowPrincipal.appendChild(colContenedorInput);
+
+			modalBody.appendChild(rowPrincipal);
+
+
+			botonSiguienteNE = botonSiguiente.cloneNode(true);
+
+			botonSiguiente.parentNode.replaceChild(botonSiguienteNE, botonSiguiente);
+
+			botonSiguienteNE.addEventListener("click",function(){
+				modalCrearProblema(2);
+			});
+
 			break;
 		default:
 			// statements_def
