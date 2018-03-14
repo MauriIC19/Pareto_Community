@@ -9,8 +9,9 @@
   $factores = $_POST['factores'];
   $autor = $_POST['autor'];
   $factores = explode(',', $factores);
+  $hat = (int)$_POST['hat'];
 
-  $query = "INSERT INTO Problema (nombreProblema, descripcion, autor) VALUES('{$nombreProblema}', '{$descripcion}', '{$autor}');";
+  $query = "INSERT INTO Problema (nombreProblema, descripcion, autor, idSombrero) VALUES('{$nombreProblema}', '{$descripcion}', '{$autor}', {$hat});";
 
   $conn->begin_transaction();
 

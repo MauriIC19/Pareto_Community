@@ -229,11 +229,12 @@ function createProblems(){
 	var autor = "Luis Mauricio";
 	var descripcion = "Una descripción estática";
 	var factores = getFactors();
+	var hat = getSelectedHat();
 
 	var load = new XMLHttpRequest();
 	load.open('POST', 'php/createProblems.php');
 	load.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	load.send('nombreProblema='+nombreProblema+'&autor='+autor+'&descripcion='+descripcion+'&factores='+factores);
+	load.send('nombreProblema='+nombreProblema+'&autor='+autor+'&descripcion='+descripcion+'&factores='+factores+'&hat='+hat);
 
 	load.onreadystatechange = function(){
 		if (this.readyState === 4 && this.status === 200) {
