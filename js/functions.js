@@ -211,10 +211,60 @@ function modalCrearProblema(modal){
 			botonSiguiente.parentNode.replaceChild(botonSiguienteNE, botonSiguiente);
 
 			botonSiguienteNE.addEventListener("click",function(){
-				modalCrearProblema(2);
+				modalCrearProblema(3);
 			});
 
 			break;
+
+		case 3:
+
+			modalTitle.textContent = "Datos Generales";
+
+			rowPrincipal = document.createElement("div");
+			rowPrincipal.classList.add("row");
+
+			colContenedorInstruccion = document.createElement("div");
+			colContenedorInstruccion.classList.add("col-12");
+
+			pInstruccion = document.createElement("p");
+
+			pInstruccionTxt = document.createTextNode("Excelente, todo va muy bien hasta ahora, únicamente falta nos digas tu nombre.");
+
+			colContenedorInput = document.createElement("div");
+			colContenedorInput.classList.add("col-12");
+
+			inputNombreUsuario = document.createElement("textarea");
+			inputNombreUsuario.setAttribute("type", "text");
+			inputNombreUsuario.setAttribute("id", "descripcion");
+			inputNombreUsuario.setAttribute("placeholder", "Ej. Luis Jorge Lozano Domínguez")
+			inputNombreUsuario.classList.add("form-control");
+
+			//Texto
+			
+			pInstruccion.appendChild(pInstruccionTxt);
+
+			//Contenedor
+			
+			colContenedorInstruccion.appendChild(pInstruccion);
+
+			colContenedorInput.appendChild(inputNombreUsuario);
+
+			rowPrincipal.appendChild(colContenedorInstruccion);
+			rowPrincipal.appendChild(colContenedorInput);
+
+			modalBody.appendChild(rowPrincipal);
+
+
+			botonSiguienteNE = botonSiguiente.cloneNode(true);
+
+			botonSiguiente.parentNode.replaceChild(botonSiguienteNE, botonSiguiente);
+
+			botonSiguienteNE.addEventListener("click",function(){
+				modalCrearProblema(4);
+			});
+
+			break;
+
 		default:
 			// statements_def
 			break;
