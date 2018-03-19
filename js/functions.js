@@ -1,16 +1,41 @@
 window.addEventListener("load", init, true);
 
+if(document.getElementById("title-principal-1")){
+	document.getElementById("title-principal-1").addEventListener("click",recargarPagina);
+}
+
+if(document.getElementById("title-principal-2")){
+	document.getElementById("title-principal-2").addEventListener("click",recargarPagina);
+}
+
+
 if(document.getElementById("creditos")){
 	document.getElementById("creditos").addEventListener("click",activarModalCreditos);
+}
+
+if(document.getElementById("creditos2")){
+	document.getElementById("creditos2").addEventListener("click",activarModalCreditos);
 }
 
 if(document.getElementById("btn-nuevo-problema")){
 	document.getElementById("btn-nuevo-problema").addEventListener("click",modalCrearProblemaFuncion);
 }
 
+/**
+ * Description. Iniciales
+*/
+
 function init(){
 	loadProblems();
 	$("#alert").hide();
+}
+
+/**
+ * Description. Recarga la página
+*/
+
+function recargarPagina(){
+	location.reload();
 }
 
 /**
@@ -19,6 +44,14 @@ function init(){
 
 function activarModalCreditos(){
 	$('#modal_creditos').modal('show');
+}
+
+/**
+ * Description. Activa el modal de créditos2.
+*/
+
+function activarModalCreditos(){
+	$('#modal_creditos2').modal('show');
 }
 
 
@@ -45,6 +78,7 @@ function loadProblems(){
 				colContenedor.classList.add("col-4");
 
 				cardContenedor = document.createElement("div");
+				cardContenedor.addEventListener("click", verProblema);
 				cardContenedor.classList.add("card");
 				cardContenedor.setAttribute("style", "width:18rem;")
 
@@ -576,6 +610,10 @@ function eliminarCampoProblema(){
 	}
 }
 
+/**
+ * Description. Cuenta la cantidad de inputs de tipo checkbox estan marcados limitando la cantidad máxima a 4
+*/
+
 function checkMaxNumberCheck(){
 	contadorChecks = 0;
 
@@ -592,9 +630,56 @@ function checkMaxNumberCheck(){
 	}
 }
 
-/**
- * Description. Cuenta la cantidad de inputs de tipo checkbox estan marcados limitando la cantidad máxima a 4
-*/
+function verProblema(){
+	
+	//Aquí debería cargarse toda la información referente al problema una vez que es ejecutada la función, voy a dejar el código que generará cada botón y la funcionalidad para que se seleccionen y se agregue la clase.
+	
+	paginaPrincipal = document.getElementById("pagina-principal");
+	paginaProblemas = document.getElementById("pagina-problema");
+	contenedorProblemasVotacion = document.getElementById("contenedor-problemas-votacion");
+
+	paginaPrincipal.classList.add("d-none");
+	paginaProblemas.classList.remove("d-none");
+
+	/*
+	<div class="col-3">
+					<button type="button" class="btn btn-outline-primary btn-block">Problema 1</button>
+				</div>
+	 */
+
+	for (var i = 0; i < 4; i++) {
+		colButton = document.createElement("div");
+		colButton.classList.add("col-3");
+
+		buttonProblem = document.createElement("button");
+		buttonProblem.setAttribute("type", "button");
+		buttonProblem.setAttribute("value", i+1);
+		buttonProblem.classList.add("btn");
+		buttonProblem.classList.add("btn-outline-primary");
+		buttonProblem.classList.add("btn-block");
+		buttonProblem.addEventListener("click", marcarBoton);
+
+		buttonProblemTxt = document.createTextNode("Problema "+(i+1));
+
+		//Texto
+		
+		buttonProblem.appendChild(buttonProblemTxt);
+
+		//Contenido
+		
+		colButton.appendChild(buttonProblem);
+
+		contenedorProblemasVotacion.appendChild(colButton);
+	}
+}
+
+function marcarBoton(){
+	botonClick = this;
+
+	botonClick.classList.toggle("btn-outline-primary");
+	botonClick.classList.toggle("btn-primary");
+	botonClick.classList.toggle("voted");
+}
 
 function createProblems(){
 	var nombreProblema = "Problema de prueba estático";
@@ -657,3 +742,50 @@ function voteFactors(){
 		}
 	}
 }
+
+/**
+ * Description. Generación de la gráfica de Pareto.
+*/
+
+
+ Highcharts.chart('container2', {
+    chart: {
+        renderTo: 'container',
+        type: 'column'
+    },
+    title: {
+        text: 'Restaurants Complaints'
+    },
+    xAxis: {
+        categories: ['Overpriced', 'Small portions', 'Wait time', 'Food is tasteless', 'No atmosphere', 'Not clean', 'Too noisy', 'Unfriendly staff']
+    },
+    yAxis: [{
+        title: {
+            text: ''
+        }
+    }, {
+        title: {
+            text: ''
+        },
+        minPadding: 0,
+        maxPadding: 0,
+        max: 100,
+        min: 0,
+        opposite: true,
+        labels: {
+            format: "{value}%"
+        }
+    }],
+    series: [{
+        type: 'pareto',
+        name: 'Pareto',
+        yAxis: 1,
+        zIndex: 10,
+        baseSeries: 1
+    }, {
+        name: 'Complaints',
+        type: 'column',
+        zIndex: 2,
+        data: [755, 222, 151, 86, 72, 51, 36, 10]
+    }]
+});
