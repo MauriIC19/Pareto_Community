@@ -1,7 +1,7 @@
 var hats = {
 	//Rojo
 	1: {
-		emocion1: 'Satisfacción',
+		emocion1: 'Satisfaccion',
 		emocion2: 'Esperanza'
 	},
 	//Blanco

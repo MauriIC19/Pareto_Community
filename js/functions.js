@@ -10,6 +10,7 @@ if(document.getElementById("btn-nuevo-problema")){
 
 function init(){
 	loadProblems();
+	$("#alert").hide();
 }
 
 /**
@@ -101,6 +102,7 @@ function modalCrearProblemaFuncion(){
 
 /**
  * Description. Generación de modales para la creación de un nuevo diagrama
+ * @param {int} modal Indica el paso en el que se va.
 */
 
 function modalCrearProblema(modal){
@@ -110,6 +112,8 @@ function modalCrearProblema(modal){
 	modalBody = document.getElementById("modal-body");
 
 	botonSiguiente = document.getElementById("btn-siguiente");
+
+	flagFinish = false;
 
 	//Limpiamos body
 	
@@ -233,9 +237,9 @@ function modalCrearProblema(modal){
 			colContenedorInput = document.createElement("div");
 			colContenedorInput.classList.add("col-12");
 
-			inputNombreUsuario = document.createElement("textarea");
+			inputNombreUsuario = document.createElement("input");
 			inputNombreUsuario.setAttribute("type", "text");
-			inputNombreUsuario.setAttribute("id", "descripcion");
+			inputNombreUsuario.setAttribute("id", "autor");
 			inputNombreUsuario.setAttribute("placeholder", "Ej. Luis Jorge Lozano Domínguez")
 			inputNombreUsuario.classList.add("form-control");
 
@@ -265,14 +269,332 @@ function modalCrearProblema(modal){
 
 			break;
 
+		case 4:
+
+			modalTitle.textContent = "Problemas";
+
+			rowPrincipal = document.createElement("div");
+			rowPrincipal.classList.add("row");
+
+			colContenedorInstruccion = document.createElement("div");
+			colContenedorInstruccion.classList.add("col-12");
+
+			pInstruccion = document.createElement("p");
+
+			pInstruccionTxt = document.createTextNode("Ahora vamos a enlistar los problemas o deficiencias que identificas en relación al tema que ya planteaste, puedes poner hasta 20.");
+
+			colContenedorInput = document.createElement("div");
+			colContenedorInput.classList.add("col-6");
+
+			inputGroupDiv = document.createElement("div");
+			inputGroupDiv.classList.add("input-group");
+
+			inputGroup = document.createElement("input");
+			inputGroup.setAttribute("type", "text");
+			inputGroup.setAttribute("placeholder", "Problema");
+			inputGroup.classList.add("form-control");
+			inputGroup.classList.add("factor");
+
+			divButton = document.createElement("div");
+			divButton.setAttribute("id", "button-add-problem");
+			divButton.addEventListener("click", agregarCampoProblema);
+			divButton.classList.add("col-6");
+			
+			buttonElement = document.createElement("button");
+			buttonElement.setAttribute("type", "button");
+			buttonElement.classList.add("btn");
+			buttonElement.classList.add("btn-light");
+			buttonElement.classList.add("btn-block");
+
+			buttonElementText = document.createTextNode("Agregar Problema");
+
+			//Texto
+			
+			pInstruccion.appendChild(pInstruccionTxt);
+			buttonElement.appendChild(buttonElementText);
+
+			//Contenedor
+			
+			colContenedorInstruccion.appendChild(pInstruccion);
+
+			colContenedorInput.appendChild(inputGroupDiv);
+
+			inputGroupDiv.appendChild(inputGroup);
+
+			divButton.appendChild(buttonElement);
+
+			rowPrincipal.appendChild(colContenedorInstruccion);
+			rowPrincipal.appendChild(colContenedorInput);
+			rowPrincipal.appendChild(divButton);
+
+			modalBody.appendChild(rowPrincipal);
+
+
+			botonSiguienteNE = botonSiguiente.cloneNode(true);
+
+			botonSiguiente.parentNode.replaceChild(botonSiguienteNE, botonSiguiente);
+
+			botonSiguienteNE.addEventListener("click",function(){
+				modalCrearProblema(5);
+			});
+
+			break;
+
+		case 5:
+
+			emocionesArray = ["Satisfacción", "Esperanza", "Información", "Utilidad", "Juicio", "Cautela", "Beneficios", "Felicidad", "Creatividad", "Innovación", "Control", "Integridad"];
+
+			modalTitle.textContent = "Ya estamos por terminar";
+
+			rowPrincipal = document.createElement("div");
+			rowPrincipal.classList.add("row");
+
+			colContenedorInstruccion = document.createElement("div");
+			colContenedorInstruccion.classList.add("col-12");
+
+			pInstruccion = document.createElement("p");
+
+			pInstruccionTxt = document.createTextNode("¿Cuáles de las siguientes emociones están relacionadas con la problemática que planteas?");
+
+			//Texto
+			
+			pInstruccion.appendChild(pInstruccionTxt);
+			
+			//Contenedor
+
+			colContenedorInstruccion.appendChild(pInstruccion);
+
+			rowPrincipal.appendChild(colContenedorInstruccion);
+
+			emocionesArray.forEach(function(elemento){
+ 				colContenedorCheck = document.createElement("div");
+	 			colContenedorCheck.classList.add("col-4");
+
+	 			formCheckDiv = document.createElement("div");
+	 			formCheckDiv.classList.add("form-check");
+
+	 			inputCheck = document.createElement("input");
+	 			inputCheck.addEventListener("click", checkMaxNumberCheck);
+	 			inputCheck.setAttribute("value", elemento);
+	 			inputCheck.setAttribute("id", elemento);
+	 			inputCheck.setAttribute("type", "checkbox");
+	 			inputCheck.classList.add("form-check-input");
+
+	 			labelCheck = document.createElement("label");
+	 			labelCheck.setAttribute("for", elemento);
+
+	 			labelCheck1Text = document.createTextNode(elemento);
+
+	 			//Texto
+
+	 			labelCheck.appendChild(labelCheck1Text);
+
+	 			//Contenedor
+
+	 			formCheckDiv.appendChild(inputCheck);
+				formCheckDiv.appendChild(labelCheck);
+
+				colContenedorCheck.appendChild(formCheckDiv);
+
+				rowPrincipal.appendChild(colContenedorCheck);
+ 			});
+
+			
+			modalBody.appendChild(rowPrincipal);
+
+			botonSiguienteNE = botonSiguiente.cloneNode(true);
+
+			botonSiguiente.parentNode.replaceChild(botonSiguienteNE, botonSiguiente);
+
+			botonSiguienteNE.addEventListener("click",function(){
+				modalCrearProblema(6);
+			});
+
+			break;
+
+		case 6:
+
+			emocionesArray = ["", "", "", "", "", "", "", "", "", "", "", ""];
+
+			modalTitle.textContent = "Una última cosa";
+
+			rowPrincipal = document.createElement("div");
+			rowPrincipal.classList.add("row");
+
+			colContenedorInstruccion = document.createElement("div");
+			colContenedorInstruccion.classList.add("col-12");
+
+			pInstruccion = document.createElement("p");
+
+			pInstruccionTxt = document.createTextNode("Descripción Aquí");
+
+			//Texto
+			
+			pInstruccion.appendChild(pInstruccionTxt);
+			
+			//Contenedor
+
+			colContenedorInstruccion.appendChild(pInstruccion);
+
+			rowPrincipal.appendChild(colContenedorInstruccion);
+
+			emocionesArray.forEach(function(elemento){
+ 				colContenedorCheck = document.createElement("div");
+	 			colContenedorCheck.classList.add("col-4");
+
+	 			formCheckDiv = document.createElement("div");
+	 			formCheckDiv.classList.add("form-check");
+
+	 			inputCheck = document.createElement("input");
+	 			inputCheck.addEventListener("click", checkMaxNumberCheck);
+	 			inputCheck.setAttribute("value", elemento);
+	 			inputCheck.setAttribute("id", elemento);
+	 			inputCheck.setAttribute("type", "checkbox");
+	 			inputCheck.classList.add("form-check-input");
+
+	 			labelCheck = document.createElement("label");
+	 			labelCheck.setAttribute("for", elemento);
+
+	 			labelCheck1Text = document.createTextNode(elemento);
+
+	 			//Texto
+
+	 			labelCheck.appendChild(labelCheck1Text);
+
+	 			//Contenedor
+
+	 			formCheckDiv.appendChild(inputCheck);
+				formCheckDiv.appendChild(labelCheck);
+
+				colContenedorCheck.appendChild(formCheckDiv);
+
+				rowPrincipal.appendChild(colContenedorCheck);
+ 			});
+
+			
+			modalBody.appendChild(rowPrincipal);
+
+			botonSiguienteNE = botonSiguiente.cloneNode(true);
+
+			botonSiguiente.parentNode.replaceChild(botonSiguienteNE, botonSiguiente);
+
+			botonSiguienteNE.textContent = "";
+			botonSiguienteNE.textContent = "Terminar"
+
+			botonSiguienteNE.addEventListener("click",function(){
+				modalCrearProblema(7);
+			});
+
+			break;
+
+		case 7:
+
+			$('#modal_problemas').modal('toggle');
+			$("#alert").show();
+			flagFinish = true;
+
+			break;
 		default:
 			// statements_def
 			break;
 	}
 
-	$('#modal_problemas').modal('show');
+	if(flagFinish==false){
+		$('#modal_problemas').modal('show');
+	}
+	
 
 }
+
+contadorProblemas = 1;
+
+/**
+ * Description. Agrega un nuevo input para poder escribir una problemática del problema que está siendo creado. 
+*/
+
+function agregarCampoProblema(){
+
+	buttonAddProblem = document.getElementById("button-add-problem");
+
+	if(contadorProblemas < 20){
+
+		colPrincipal6 = document.createElement("div");
+		colPrincipal6.classList.add("col-6");
+
+		inputGroupDiv = document.createElement("div");
+		inputGroupDiv.classList.add("input-group");
+
+		inputGroup = document.createElement("input");
+		inputGroup.setAttribute("type", "text");
+		inputGroup.setAttribute("placeholder", "Problema");
+		inputGroup.classList.add("form-control");
+		inputGroup.classList.add("factor");
+
+		deleteInputDiv = document.createElement("div");
+		deleteInputDiv.classList.add("input-group-append");
+
+		spanDeleteInput = document.createElement("span");
+		spanDeleteInput.classList.add("input-group-text");
+		spanDeleteInput.addEventListener("click", eliminarCampoProblema);
+
+		spanDeleteInputText = document.createTextNode("x");
+
+		//Unimos Texto
+		
+		spanDeleteInput.appendChild(spanDeleteInputText);
+
+		//Unimos Contenido 
+		
+		deleteInputDiv.appendChild(spanDeleteInput);
+
+		inputGroupDiv.appendChild(inputGroup);
+		inputGroupDiv.appendChild(deleteInputDiv);
+
+		colPrincipal6.appendChild(inputGroupDiv);
+
+		buttonAddProblem.parentNode.insertBefore(colPrincipal6, buttonAddProblem);
+
+		contadorProblemas++;
+	}
+
+	if(contadorProblemas==20){
+		buttonAddProblem.classList.add("d-none");
+	}
+}
+
+/**
+ * Description. Elimina un input de las diversas problemáticas que están siendo creadas referentes a la problemática en creación. 
+*/
+
+function eliminarCampoProblema(){
+	this.parentNode.parentNode.parentNode.remove();
+	
+	contadorProblemas--;
+
+	if(contadorProblemas<20){
+		buttonAddProblem.classList.remove("d-none");
+	}
+}
+
+function checkMaxNumberCheck(){
+	contadorChecks = 0;
+
+	 checks = document.querySelectorAll("input[type=checkbox]");
+
+	for(i = 0; i < checks.length; i++){
+		if(checks[i].checked && checks[i].name == this.name){
+			contadorChecks++;
+		}
+	}
+
+	if(contadorChecks > 4){
+		this.checked = false;
+	}
+}
+
+/**
+ * Description. Cuenta la cantidad de inputs de tipo checkbox estan marcados limitando la cantidad máxima a 4
+*/
 
 function createProblems(){
 	var nombreProblema = "Problema de prueba estático";
