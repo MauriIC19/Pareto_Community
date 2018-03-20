@@ -4,8 +4,7 @@
   $conn = new DB();
   $conn = $conn->connect();
 
-  $query = "SELECT * FROM Problema p, Sombrero s WHERE p.idSombrero = s.idSombrero;";
-
+  $query = "SELECT * FROM Problema p, Sombrero s, Catuda c WHERE p.idSombrero = s.idSombrero AND p.idCatuda = c.idCatuda;";
   $results = $conn->query($query);
 
   $data = array();

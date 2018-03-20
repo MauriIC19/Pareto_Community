@@ -32,8 +32,7 @@ var hats = {
 }
 
 function getSelectedHat(){
-	//var selectedHats = document.querySelectorAll('.selectedHat');
-	var selectedHats = ['Satisfacción', 'Juicio', 'Cautela'];
+	var selectedHats = document.querySelectorAll('.selectedHat');
 	var incidencies = [0, 0, 0, 0, 0, 0];
 	var x = Object.keys(hats).length;
 

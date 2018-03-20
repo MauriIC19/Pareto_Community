@@ -126,6 +126,18 @@ function loadProblems(){
 	}
 }
 
+function loadProblem(idProblem){
+	var load = new XMLHttpRequest();
+	load.open('GET', 'php/loadProblem.php?idProblem='+idProblem);
+	load.send();
+
+	load.onreadystatechange = function(){
+			if (this.readyState === 4 && this.status === 200) {
+			 	console.log(JSON.parse(this.responseText));
+			}
+		}
+}
+
 /**
  * Description. Activacion de la funcionalidad para la creacion de un nuevo problema
  */
@@ -687,11 +699,12 @@ function createProblems(){
 	var descripcion = "Una descripción estática";
 	var factores = getFactors();
 	var hat = getSelectedHat();
+	var cat = getSelectedCatuda();
 
 	var load = new XMLHttpRequest();
 	load.open('POST', 'php/createProblems.php');
 	load.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	load.send('nombreProblema='+nombreProblema+'&autor='+autor+'&descripcion='+descripcion+'&factores='+factores+'&hat='+hat);
+	load.send('nombreProblema='+nombreProblema+'&autor='+autor+'&descripcion='+descripcion+'&factores='+factores+'&hat='+hat+'&cat='+cat);
 
 	load.onreadystatechange = function(){
 		if (this.readyState === 4 && this.status === 200) {
