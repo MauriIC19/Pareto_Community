@@ -22,4 +22,5 @@
 
 #modal_creditos img, #modal_creditos2 img{
 	padding:  0.5rem;
+	object-fit: cover;
 }

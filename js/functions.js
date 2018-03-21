@@ -30,8 +30,8 @@ if (document.getElementById("btn-votar")) {
 */
 
 function init(){
-	loadProblems();
 	$("#alert").hide();
+	loadProblems();
 }
 
 /**
@@ -178,10 +178,33 @@ function loadProblem(){
 				paginaProblemas.classList.remove("d-none");
 
 				nombreSombrero = document.getElementById("txt-sombrero");
-				nombreSombrero.textContent = resultado.nombreSombrero;
 
+				if (resultado.nombreSombrero == "Blanco") {
+					nombreSombrero.textContent = "Sombrero " + resultado.nombreSombrero + ": La persona con el sombrero blanco será la encargada de proveer toda la información necesaria para la toma de la decisión. Esta información será objetiva, neutral y basada en hechos.";
+				}
+
+				if (resultado.nombreSombrero == "Rojo") {
+					nombreSombrero.textContent = "Sombrero " + resultado.nombreSombrero + ": El sombrero rojo es un sombrero emocional, la persona que se lo pone tiene que argumentar de manera pasional, hablando de lo que le gusta y lo que no, de lo que le da miedo o de las corazonadas que tiene y sentimientos que tiene.";
+				}
+
+				if (resultado.nombreSombrero == "Verde") {
+					nombreSombrero.textContent = "Sombrero " + resultado.nombreSombrero + ": El sombrero verde es el sombrero de la creatividad, la persona que se ponga este sombrero tendrá que aportar ideas, posibilidades y alternativas creativas para la resolución del asunto tratado.";
+				}
+
+				if (resultado.nombreSombrero == "Amarillo") {
+					nombreSombrero.textContent = "Sombrero " + resultado.nombreSombrero + ": La persona con el sombrero amarillo tiene que asimilar el rol de persona positiva y optimista. Su objetivo es explorar el lado positivo de las diferentes decisiones y encontrar los beneficios que tendría adoptar cada una de ellas.";
+				}
+
+				if (resultado.nombreSombrero == "Negro") {
+					nombreSombrero.textContent = "Sombrero " + resultado.nombreSombrero + ":  El sombrero negro es el antagonista del Amarillo. Desde un lado racional tiene que argumentar sobre todo aquello que pueda salir mal, debe encontrar todas las dificultades y el lado negativo de las cosas.";
+				}
+
+				if (resultado.nombreSombrero == "Azul") {
+					nombreSombrero.textContent = "Sombrero " + resultado.nombreSombrero + ":  El sombrero azul es una especie de moderador, se encarga de guiar la toma de decisiones y de permitir que todo el mundo hable y sea escuchado.";
+				}
+				
 				nombreCatuda = document.getElementById("txt-catuda");
-				nombreCatuda.textContent = resultado.nombreCatuda;
+				nombreCatuda.textContent = "Considerando el análisis Catwda esta problemática considera como elemento esencial: " + resultado.nombreCatuda;
 
 				for (var i = 0; i < factoresArreglo.length; i++) {
 					colButton = document.createElement("div");
@@ -193,6 +216,7 @@ function loadProblem(){
 					buttonProblem.classList.add("btn");
 					buttonProblem.classList.add("btn-outline-primary");
 					buttonProblem.classList.add("btn-block");
+					buttonProblem.classList.add("top-bottom-margin");
 					buttonProblem.addEventListener("click", marcarBoton);
 
 					buttonProblemTxt = document.createTextNode(resultado['factores'][i]['nombreFactor']);
