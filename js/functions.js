@@ -204,7 +204,7 @@ function loadProblem(){
 				}
 				
 				nombreCatuda = document.getElementById("txt-catuda");
-				nombreCatuda.textContent = "Considerando el análisis Catwda esta problemática considera como elemento esencial: " + resultado.nombreCatuda;
+				nombreCatuda.textContent = "Considerando el análisis CATWDA esta problemática considera como elemento esencial: " + resultado.nombreCatuda;
 
 				for (var i = 0; i < factoresArreglo.length; i++) {
 					colButton = document.createElement("div");
