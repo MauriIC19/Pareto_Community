@@ -12,24 +12,27 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
 	<div class="container">
 		<div id="pagina-principal">
+			<div class="row top-buffer"></div>
 			<div class="row">
 				<div class="col">
 					<h1><span  id="title-principal">Pareto Community</span></h1>
 				</div>
 			</div>
+			<div class="row top-buffer"></div>
 			<div class="row">
 				<div class="col-10">
 					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Buscar">
 				</div>
-				<div class="col-2">
-					<button id="btn-nuevo-problema"class="btn btn-primary" type="submit">Crear Nuevo</button>
+				<div class="col-2 col-centered text-center">
+					<button id="btn-nuevo-problema" class="btn btn-primary margin-auto" type="submit">Crear Nuevo</button>
 				</div>
 			</div>
-
+			<div class="row top-buffer"></div>
 			<div id="alert" class="alert alert-success" role="alert">
 			 ¡El problema ha sido creado de forma exitosa!
 			</div>
@@ -37,8 +40,9 @@
 			<div id="cards-container" class="row">
 
 			</div>
+			<div class="row top-buffer"></div>
 
-			<div class="col-12">
+			<div class="col-12 text-center">
 				<p id="creditos">Mauricio Arturo Ibarra Corona & Luis Jorge Lozano Domínguez</p>
 			</div>
 
@@ -63,15 +67,14 @@
 									<img data-src="holder.js/200x200" class="rounded float-left" alt="200x200" style="width: 100px; height: 100px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1621ae41f9b%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1621ae41f9b%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2275.5%22%20y%3D%22105.1%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
 									<img data-src="holder.js/200x200" class="rounded float-left" alt="200x200" style="width: 100px; height: 100px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1621ae41f9b%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1621ae41f9b%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2275.5%22%20y%3D%22105.1%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
 								</div>
-
-								<div class="col-12">
-									<p>Luis Jorge Lozano Domínguez</p>
-									<a href="">lozanoluisjorge@gmail.com</a>
-									<p>Mauricio Arturo Ibarra Corona</p>
-									<a href="">mauricio_ic19@outlook.com</a>
-								</div>
-
 							</div>
+							<div class="row top-buffer"></div>
+							<div class="col-12 text-center">
+									<p class="margin-credits">Luis Jorge Lozano Domínguez</p>
+									<a href="mailto:lozanoluisjorge@gmail.com">lozanoluisjorge@gmail.com</a>
+									<p class="margin-credits">Mauricio Arturo Ibarra Corona</p>
+									<a href="mailto:mauricio_ic19@outlook.com">mauricio_ic19@outlook.com</a>
+								</div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -174,15 +177,14 @@
 									<img data-src="holder.js/200x200" class="rounded float-left" alt="200x200" style="width: 100px; height: 100px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1621ae41f9b%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1621ae41f9b%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2275.5%22%20y%3D%22105.1%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
 									<img data-src="holder.js/200x200" class="rounded float-left" alt="200x200" style="width: 100px; height: 100px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1621ae41f9b%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1621ae41f9b%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2275.5%22%20y%3D%22105.1%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
 								</div>
-
-								<div class="col-12">
-									<p>Luis Jorge Lozano Domínguez</p>
-									<a href="">lozanoluisjorge@gmail.com</a>
-									<p>Mauricio Arturo Ibarra Corona</p>
-									<a href="">mauricio_ic19@outlook.com</a>
-								</div>
-
 							</div>
+							<div class="row top-buffer"></div>
+							<div class="col-12 text-center">
+									<p class="margin-credits">Luis Jorge Lozano Domínguez</p>
+									<a href="mailto:lozanoluisjorge@gmail.com">lozanoluisjorge@gmail.com</a>
+									<p class="margin-credits">Mauricio Arturo Ibarra Corona</p>
+									<a href="mailto:mauricio_ic19@outlook.com">mauricio_ic19@outlook.com</a>
+								</div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

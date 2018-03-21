@@ -87,12 +87,14 @@ function loadProblems(){
 				//Contenedores
 				colContenedor = document.createElement("div");
 				colContenedor.classList.add("col-4");
+				colContenedor.classList.add("top-bottom-margin");
 
 				cardContenedor = document.createElement("div");
 				cardContenedor.addEventListener("click", loadProblem);
 				cardContenedor.classList.add("card");
+				cardContenedor.classList.add("margin-auto");
 				cardContenedor.setAttribute("style", "width:18rem;");
-				cardContenedor.setAttribute("id", datos[i].idProblema)
+				cardContenedor.setAttribute("id", datos[i].idProblema);
 
 				cardBodyContenedor = document.createElement("div");
 				cardBodyContenedor.classList.add("card-body");

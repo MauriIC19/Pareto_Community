@@ -1,0 +1,25 @@
+.top-buffer { 
+	margin-top: 1rem; 
+}
+
+.col-centered{
+	justify-content: center;
+}
+
+.margin-auto{
+	margin: auto !important;
+}
+
+.top-bottom-margin{
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.margin-credits{
+	margin-bottom: 0 !important;
+	margin-top: 1rem;
+}
+
+#modal_creditos img, #modal_creditos2 img{
+	padding:  0.5rem;
+}
