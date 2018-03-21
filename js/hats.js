@@ -32,16 +32,17 @@ var hats = {
 }
 
 function getSelectedHat(){
-	var selectedHats = document.querySelectorAll('.selectedHat');
+	var selectedHats = document.querySelectorAll('input:checked');
 	var incidencies = [0, 0, 0, 0, 0, 0];
 	var x = Object.keys(hats).length;
 
 	for(var i = 1; i <= x; i++){
 		for (var j = 0; j < selectedHats.length; j++) {
-			if(hats[i].emocion1 == selectedHats[j] || hats[i].emocion2 == selectedHats[j]){
+			if(hats[i].emocion1 == selectedHats[j].value || hats[i].emocion2 == selectedHats[j].value){
 				incidencies[i-1] = incidencies[i-1] + 1;
 			}
 		}
 	}
+
 	return incidencies.indexOf(Math.max.apply(Math, incidencies)) + 1;
 }

@@ -14,7 +14,7 @@ if(document.getElementById("creditos")){
 }
 
 if(document.getElementById("creditos2")){
-	document.getElementById("creditos2").addEventListener("click",activarModalCreditos);
+	document.getElementById("creditos2").addEventListener("click",activarModalCreditos2);
 }
 
 if(document.getElementById("btn-nuevo-problema")){
@@ -50,7 +50,7 @@ function activarModalCreditos(){
  * Description. Activa el modal de créditos2.
 */
 
-function activarModalCreditos(){
+function activarModalCreditos2(){
 	$('#modal_creditos2').modal('show');
 }
 
@@ -60,6 +60,13 @@ function activarModalCreditos(){
 */
   
 function loadProblems(){
+
+	cardsConainer = document.getElementById("cards-container");
+
+	while (cardsConainer.firstChild) {
+    	cardsConainer.removeChild(cardsConainer.firstChild);
+	}
+
 	var load = new XMLHttpRequest();
 	load.open('GET', 'php/loadProblems.php');
 	load.send();
@@ -80,7 +87,8 @@ function loadProblems(){
 				cardContenedor = document.createElement("div");
 				cardContenedor.addEventListener("click", verProblema);
 				cardContenedor.classList.add("card");
-				cardContenedor.setAttribute("style", "width:18rem;")
+				cardContenedor.setAttribute("style", "width:18rem;");
+				cardContenedor.setAttribute("id", datos[i].idProblema)
 
 				cardBodyContenedor = document.createElement("div");
 				cardBodyContenedor.classList.add("card-body");
@@ -147,6 +155,16 @@ function modalCrearProblemaFuncion(){
 }
 
 /**
+ * Description. JSON de Información de Problema
+*/
+
+informacionProblema = new Object();
+informacionProblema.nombreProblema = "";
+informacionProblema.autor  = "";
+informacionProblema.descripcion = "";
+informacionProblemaJSON= JSON.stringify(informacionProblema);
+
+/**
  * Description. Generación de modales para la creación de un nuevo diagrama
  * @param {int} modal Indica el paso en el que se va.
 */
@@ -158,6 +176,8 @@ function modalCrearProblema(modal){
 	modalBody = document.getElementById("modal-body");
 
 	botonSiguiente = document.getElementById("btn-siguiente");
+
+	botonSiguiente.textContent = "Siguiente";
 
 	flagFinish = false;
 
@@ -212,6 +232,8 @@ function modalCrearProblema(modal){
 			botonSiguiente.parentNode.replaceChild(botonSiguienteNE, botonSiguiente);
 
 			botonSiguienteNE.addEventListener("click",function(){
+				informacionProblema.nombreProblema = inputNombreProblema.value;
+				botonSiguienteNE.textContent = "Siguiente";
 				modalCrearProblema(2);
 			});
 			
@@ -261,6 +283,8 @@ function modalCrearProblema(modal){
 			botonSiguiente.parentNode.replaceChild(botonSiguienteNE, botonSiguiente);
 
 			botonSiguienteNE.addEventListener("click",function(){
+				informacionProblema.descripcion = inputDescripcionProblema.value;
+				botonSiguienteNE.textContent = "Siguiente";
 				modalCrearProblema(3);
 			});
 
@@ -310,6 +334,8 @@ function modalCrearProblema(modal){
 			botonSiguiente.parentNode.replaceChild(botonSiguienteNE, botonSiguiente);
 
 			botonSiguienteNE.addEventListener("click",function(){
+				informacionProblema.autor = inputNombreUsuario.value;
+				botonSiguienteNE.textContent = "Siguiente";
 				modalCrearProblema(4);
 			});
 
@@ -381,6 +407,8 @@ function modalCrearProblema(modal){
 			botonSiguiente.parentNode.replaceChild(botonSiguienteNE, botonSiguiente);
 
 			botonSiguienteNE.addEventListener("click",function(){
+				botonSiguienteNE.textContent = "Siguiente";
+				factores = getFactors();
 				modalCrearProblema(5);
 			});
 
@@ -453,6 +481,8 @@ function modalCrearProblema(modal){
 			botonSiguiente.parentNode.replaceChild(botonSiguienteNE, botonSiguiente);
 
 			botonSiguienteNE.addEventListener("click",function(){
+				botonSiguienteNE.textContent = "Siguiente";
+				hat = getSelectedHat();
 				modalCrearProblema(6);
 			});
 
@@ -460,7 +490,7 @@ function modalCrearProblema(modal){
 
 		case 6:
 
-			emocionesArray = ["", "", "", "", "", "", "", "", "", "", "", ""];
+			emocionesArray = ["Operación", "Beneficia", "Alguién", "Tú", "Transformar", "Procesos", "Enfoque", "Visión", "Propietario", "Decisión", "Política", "Organización"];
 
 			modalTitle.textContent = "Una última cosa";
 
@@ -472,7 +502,7 @@ function modalCrearProblema(modal){
 
 			pInstruccion = document.createElement("p");
 
-			pInstruccionTxt = document.createTextNode("Descripción Aquí");
+			pInstruccionTxt = document.createTextNode("Selecciona los elementos que influyen en mayor medida en la problemática que planteas (Escoge máximo 4)");
 
 			//Texto
 			
@@ -528,17 +558,17 @@ function modalCrearProblema(modal){
 			botonSiguienteNE.textContent = "Terminar"
 
 			botonSiguienteNE.addEventListener("click",function(){
+				cat = getSelectedCatuda();
 				modalCrearProblema(7);
 			});
 
 			break;
 
 		case 7:
-
+			createProblems();
 			$('#modal_problemas').modal('toggle');
 			$("#alert").show();
 			flagFinish = true;
-
 			break;
 		default:
 			// statements_def
@@ -551,6 +581,10 @@ function modalCrearProblema(modal){
 	
 
 }
+
+/**
+ * Description. Variable para contar la cantidad de problemas que han sido agregados.
+*/
 
 contadorProblemas = 1;
 
@@ -643,7 +677,10 @@ function checkMaxNumberCheck(){
 }
 
 function verProblema(){
-	
+
+	//this.id
+	//loadProblem();	
+
 	//Aquí debería cargarse toda la información referente al problema una vez que es ejecutada la función, voy a dejar el código que generará cada botón y la funcionalidad para que se seleccionen y se agregue la clase.
 	
 	paginaPrincipal = document.getElementById("pagina-principal");
@@ -694,12 +731,9 @@ function marcarBoton(){
 }
 
 function createProblems(){
-	var nombreProblema = "Problema de prueba estático";
-	var autor = "Luis Mauricio";
-	var descripcion = "Una descripción estática";
-	var factores = getFactors();
-	var hat = getSelectedHat();
-	var cat = getSelectedCatuda();
+	var nombreProblema = informacionProblema.nombreProblema;
+	var autor = informacionProblema.autor;
+	var descripcion = informacionProblema.descripcion;
 
 	var load = new XMLHttpRequest();
 	load.open('POST', 'php/createProblems.php');
@@ -710,12 +744,15 @@ function createProblems(){
 		if (this.readyState === 4 && this.status === 200) {
 			if (this.responseText === '1') {
 				console.log('Ok');
+				loadProblems();
 			}
 			else{
 				console.log(this.responseText);
 			}
 		}
 	}
+
+
 }
 
 function getFactors(){
@@ -799,6 +836,6 @@ function voteFactors(){
         name: 'Complaints',
         type: 'column',
         zIndex: 2,
-        data: [755, 222, 151, 86, 72, 51, 36, 10]
+        data: [10, 222, 151, 86, 72, 51, 36, 10]
     }]
 });
