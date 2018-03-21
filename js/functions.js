@@ -21,6 +21,10 @@ if(document.getElementById("btn-nuevo-problema")){
 	document.getElementById("btn-nuevo-problema").addEventListener("click",modalCrearProblemaFuncion);
 }
 
+if (document.getElementById("btn-votar")) {
+	document.getElementById("btn-votar").addEventListener("click", voteFactors);
+}
+
 /**
  * Description. Iniciales
 */
@@ -85,7 +89,7 @@ function loadProblems(){
 				colContenedor.classList.add("col-4");
 
 				cardContenedor = document.createElement("div");
-				cardContenedor.addEventListener("click", verProblema);
+				cardContenedor.addEventListener("click", loadProblem);
 				cardContenedor.classList.add("card");
 				cardContenedor.setAttribute("style", "width:18rem;");
 				cardContenedor.setAttribute("id", datos[i].idProblema)
@@ -134,16 +138,120 @@ function loadProblems(){
 	}
 }
 
-function loadProblem(idProblem){
+function loadProblem(){
+
+	var idProblem = this.id;
+
 	var load = new XMLHttpRequest();
 	load.open('GET', 'php/loadProblem.php?idProblem='+idProblem);
 	load.send();
 
 	load.onreadystatechange = function(){
 			if (this.readyState === 4 && this.status === 200) {
-			 	console.log(JSON.parse(this.responseText));
+			 	resultado = JSON.parse(this.responseText);
+
+			 	console.log(resultado);
+
+			 	factoresArreglo = resultado['factores'];
+
+			 	factoresArreglo.sort((a, b) => parseInt(b.frecuencia) - parseInt(a.frecuencia));
+
+			 	nombresFactores = [];
+
+			 	factoresArreglo.forEach(function(element) {
+				    nombresFactores.push(element.nombreFactor);
+				});
+
+				frecuenciaFactores = [];
+
+			 	factoresArreglo.forEach(function(element) {
+				    frecuenciaFactores.push(parseInt(element.frecuencia));
+				});
+
+				paginaPrincipal = document.getElementById("pagina-principal");
+				paginaProblemas = document.getElementById("pagina-problema");
+				contenedorProblemasVotacion = document.getElementById("contenedor-problemas-votacion");
+
+				paginaPrincipal.classList.add("d-none");
+				paginaProblemas.classList.remove("d-none");
+
+				nombreSombrero = document.getElementById("txt-sombrero");
+				nombreSombrero.textContent = resultado.nombreSombrero;
+
+				nombreCatuda = document.getElementById("txt-catuda");
+				nombreCatuda.textContent = resultado.nombreCatuda;
+
+				for (var i = 0; i < factoresArreglo.length; i++) {
+					colButton = document.createElement("div");
+					colButton.classList.add("col-3");
+
+					buttonProblem = document.createElement("button");
+					buttonProblem.setAttribute("type", "button");
+					buttonProblem.setAttribute("value", resultado['factores'][i]['idFactor']);
+					buttonProblem.classList.add("btn");
+					buttonProblem.classList.add("btn-outline-primary");
+					buttonProblem.classList.add("btn-block");
+					buttonProblem.addEventListener("click", marcarBoton);
+
+					buttonProblemTxt = document.createTextNode(resultado['factores'][i]['nombreFactor']);
+
+					//Texto
+					
+					buttonProblem.appendChild(buttonProblemTxt);
+
+					//Contenido
+					
+					colButton.appendChild(buttonProblem);
+
+					contenedorProblemasVotacion.appendChild(colButton);
+				}
+
+				Highcharts.chart('container', {
+				    chart: {
+				        renderTo: 'container',
+				        type: 'column'
+				    },
+				    title: {
+				        text: resultado['nombreProblema']
+				    },
+				    xAxis: {
+				        categories: nombresFactores
+				    },
+				    yAxis: [{
+				        title: {
+				            text: ''
+				        }
+				    }, {
+				        title: {
+				            text: ''
+				        },
+				        minPadding: 0,
+				        maxPadding: 0,
+				        max: 100,
+				        min: 0,
+				        opposite: true,
+				        labels: {
+				            format: "{value}%"
+				        }
+				    }],
+				    series: [{
+				        type: 'pareto',
+				        name: 'Pareto',
+				        yAxis: 1,
+				        zIndex: 10,
+				        baseSeries: 1
+				    }, {
+				        name: 'Frecuencia',
+				        type: 'column',
+				        zIndex: 2,
+				        data: frecuenciaFactores
+				    }]
+				});
+			 	
 			}
 		}
+
+	
 }
 
 /**
@@ -676,52 +784,6 @@ function checkMaxNumberCheck(){
 	}
 }
 
-function verProblema(){
-
-	//this.id
-	//loadProblem();	
-
-	//Aquí debería cargarse toda la información referente al problema una vez que es ejecutada la función, voy a dejar el código que generará cada botón y la funcionalidad para que se seleccionen y se agregue la clase.
-	
-	paginaPrincipal = document.getElementById("pagina-principal");
-	paginaProblemas = document.getElementById("pagina-problema");
-	contenedorProblemasVotacion = document.getElementById("contenedor-problemas-votacion");
-
-	paginaPrincipal.classList.add("d-none");
-	paginaProblemas.classList.remove("d-none");
-
-	/*
-	<div class="col-3">
-					<button type="button" class="btn btn-outline-primary btn-block">Problema 1</button>
-				</div>
-	 */
-
-	for (var i = 0; i < 4; i++) {
-		colButton = document.createElement("div");
-		colButton.classList.add("col-3");
-
-		buttonProblem = document.createElement("button");
-		buttonProblem.setAttribute("type", "button");
-		buttonProblem.setAttribute("value", i+1);
-		buttonProblem.classList.add("btn");
-		buttonProblem.classList.add("btn-outline-primary");
-		buttonProblem.classList.add("btn-block");
-		buttonProblem.addEventListener("click", marcarBoton);
-
-		buttonProblemTxt = document.createTextNode("Problema "+(i+1));
-
-		//Texto
-		
-		buttonProblem.appendChild(buttonProblemTxt);
-
-		//Contenido
-		
-		colButton.appendChild(buttonProblem);
-
-		contenedorProblemasVotacion.appendChild(colButton);
-	}
-}
-
 function marcarBoton(){
 	botonClick = this;
 
@@ -791,51 +853,7 @@ function voteFactors(){
 			}
 		}
 	}
+
+	location.reload();
 }
-
-/**
- * Description. Generación de la gráfica de Pareto.
-*/
-
-
- Highcharts.chart('container2', {
-    chart: {
-        renderTo: 'container',
-        type: 'column'
-    },
-    title: {
-        text: 'Restaurants Complaints'
-    },
-    xAxis: {
-        categories: ['Overpriced', 'Small portions', 'Wait time', 'Food is tasteless', 'No atmosphere', 'Not clean', 'Too noisy', 'Unfriendly staff']
-    },
-    yAxis: [{
-        title: {
-            text: ''
-        }
-    }, {
-        title: {
-            text: ''
-        },
-        minPadding: 0,
-        maxPadding: 0,
-        max: 100,
-        min: 0,
-        opposite: true,
-        labels: {
-            format: "{value}%"
-        }
-    }],
-    series: [{
-        type: 'pareto',
-        name: 'Pareto',
-        yAxis: 1,
-        zIndex: 10,
-        baseSeries: 1
-    }, {
-        name: 'Complaints',
-        type: 'column',
-        zIndex: 2,
-        data: [10, 222, 151, 86, 72, 51, 36, 10]
-    }]
-});
+ 
